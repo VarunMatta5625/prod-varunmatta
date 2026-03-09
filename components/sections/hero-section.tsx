@@ -179,7 +179,7 @@ export default function HeroSection() {
                         Aushadham allows you to store your medical history and reports in your profile for no additional cost.
                     </p>
 
-                    <div className="flex flex-col gap-6 -mt-6 md:mt-0">
+                    <div className="flex flex-col gap-3 md:gap-6 -mt-8 md:mt-0">
                         <Link
                             href="/upload"
                             className="hero-btn group inline-flex items-center gap-3 px-8 py-4 text-white text-[17px] font-semibold rounded-full w-fit transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
