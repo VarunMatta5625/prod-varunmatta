@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ClipboardList, Pill, CalendarDays, TrendingUp, Users } from "lucide-react";
 import Link from "next/link";
 
 // Doctor figure SVG illustration
@@ -34,16 +34,16 @@ function DoctorFigure({ mirror = false }: { mirror?: boolean }) {
 }
 
 const features = [
-  { emoji: "📋", label: "Patient Management" },
-  { emoji: "💊", label: "Digital Prescriptions" },
-  { emoji: "📅", label: "Smart Scheduling" },
-  { emoji: "📈", label: "Revenue Insights" },
-  { emoji: "🤝", label: "Expert Network" },
+  { icon: ClipboardList, label: "Patient Management",   color: "#f59e0b", bg: "#fef3c7" },
+  { icon: Pill,          label: "Digital Prescriptions", color: "#ef4444", bg: "#fee2e2" },
+  { icon: CalendarDays,  label: "Smart Scheduling",      color: "#3b82f6", bg: "#dbeafe" },
+  { icon: TrendingUp,    label: "Revenue Insights",      color: "#8b5cf6", bg: "#ede9fe" },
+  { icon: Users,         label: "Expert Network",        color: "#f59e0b", bg: "#fef9eb" },
 ];
 
 export default function DoctorsCTASection() {
   return (
-    <section className="py-20 relative overflow-hidden" style={{ backgroundColor: "#f0faf7" }}>
+    <section id="doctors" className="py-20 relative overflow-hidden" style={{ backgroundColor: "#f0faf7" }}>
       {/* Decorative circles */}
       <div className="absolute top-0 left-0 w-72 h-72 rounded-full opacity-5 -translate-x-1/2 -translate-y-1/2" style={{ backgroundColor: "#3aa692" }} />
       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full opacity-5 translate-x-1/2 translate-y-1/2" style={{ backgroundColor: "#228573" }} />
@@ -70,8 +70,13 @@ export default function DoctorsCTASection() {
             {/* Feature icons grid */}
             <div className="w-full max-w-3xl bg-white rounded-3xl p-6 shadow-sm border border-[#e8f5f2] flex flex-wrap items-center justify-center gap-6 md:gap-10 my-2">
               {features.map((item) => (
-                <div key={item.label} className="flex flex-col items-center gap-2 min-w-[90px]">
-                  <span className="text-4xl">{item.emoji}</span>
+                <div key={item.label} className="feature-icon flex flex-col items-center gap-2 min-w-[90px]">
+                  <div
+                    className="icon-bg w-14 h-14 rounded-2xl flex items-center justify-center shadow-sm"
+                    style={{ backgroundColor: item.bg }}
+                  >
+                    <item.icon size={28} style={{ color: item.color }} strokeWidth={1.5} />
+                  </div>
                   <span className="text-xs font-semibold" style={{ color: "#065b4b" }}>{item.label}</span>
                 </div>
               ))}
@@ -83,7 +88,7 @@ export default function DoctorsCTASection() {
 
             <Link
               href="/signup"
-              className="group inline-flex items-center gap-3 px-10 py-4 text-white text-lg font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:opacity-90"
+              className="group inline-flex items-center gap-3 px-10 py-4 text-white text-lg font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 hover:scale-[1.02] hover:opacity-90"
               style={{ backgroundColor: "#228573" }}
             >
               Join Aushadham

@@ -49,6 +49,7 @@ function AushadhamLogo() {
 
 const navLinks = [
     { label: "Home", sectionId: "hero" },
+    { label: "Vision", sectionId: "vision" },
     { label: "How It Works", sectionId: "how-it-works" },
     { label: "Testimonials", sectionId: "testimonials" },
     { label: "Find Doctors", sectionId: "experts" },
@@ -107,7 +108,7 @@ export default function Navbar() {
 
     return (
         <>
-        <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+        <nav aria-label="Main navigation" className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
             <div className="max-w-[1440px] mx-auto px-6 lg:px-[99px] h-[76px] flex items-center justify-between">
 
                 {/* Logo — scroll to top on click */}

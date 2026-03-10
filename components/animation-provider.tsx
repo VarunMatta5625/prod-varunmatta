@@ -11,6 +11,59 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AnimationProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Feature icons "draw" animation — each icon's SVG strokes are traced path-by-path
+            const doctorsSection = document.querySelector("#doctors");
+            if (doctorsSection) {
+                const featureIconEls = Array.from(doctorsSection.querySelectorAll<HTMLElement>(".feature-icon"));
+                if (featureIconEls.length) {
+                    // 1. Colored background pops in with a bouncy scale
+                    const iconBgs = featureIconEls.map((el) => el.querySelector(".icon-bg")).filter(Boolean);
+                    gsap.from(iconBgs, {
+                        scrollTrigger: { trigger: doctorsSection, start: "top 70%", once: true },
+                        scale: 0,
+                        duration: 0.45,
+                        stagger: 0.13,
+                        ease: "back.out(1.7)",
+                    });
+
+                    // 2. SVG paths are drawn via strokeDashoffset (creates a "being sketched" effect)
+                    featureIconEls.forEach((iconEl, i) => {
+                        const paths = Array.from(
+                            iconEl.querySelectorAll("svg path, svg circle, svg line, svg polyline, svg rect, svg ellipse")
+                        ) as SVGGeometryElement[];
+                        if (!paths.length) return;
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        gsap.fromTo(
+                            paths,
+                            {
+                                strokeDasharray: (_: number, el: SVGGeometryElement) => el.getTotalLength?.() ?? 60,
+                                strokeDashoffset: (_: number, el: SVGGeometryElement) => el.getTotalLength?.() ?? 60,
+                            } as any,
+                            {
+                                scrollTrigger: { trigger: doctorsSection, start: "top 70%", once: true },
+                                strokeDashoffset: 0,
+                                duration: 0.7,
+                                delay: i * 0.13 + 0.22,
+                                stagger: 0.06,
+                                ease: "power2.inOut",
+                            }
+                        );
+                    });
+
+                    // 3. Labels appear after icons finish drawing
+                    const labels = featureIconEls.map((el) => el.querySelector("span")).filter(Boolean);
+                    gsap.from(labels, {
+                        scrollTrigger: { trigger: doctorsSection, start: "top 70%", once: true },
+                        opacity: 0,
+                        y: 8,
+                        duration: 0.4,
+                        delay: 0.9,
+                        stagger: 0.1,
+                        ease: "power2.out",
+                    });
+                }
+            }
+
             // Staggered card reveals for sections that have .reveal-item children
             (["#testimonials", "#experts"] as const).forEach((id) => {
                 const section = document.querySelector(id);

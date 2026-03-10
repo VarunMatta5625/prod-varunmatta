@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SectionHeading from "@/components/ui/section-heading";
 import DoctorCard from "@/components/cards/doctor-card";
 import { getDoctors } from "@/lib/data/doctors";
@@ -22,9 +23,12 @@ export default async function ExpertsSection() {
 
                 {/* View all CTA */}
                 <div className="flex justify-center mt-12">
-                    <button className="px-10 py-3.5 rounded-full border-2 border-[#228573] text-[#228573] font-semibold text-base hover:bg-[#228573] hover:text-white transition-all duration-200">
+                    <Link
+                        href="/doctors"
+                        className="px-10 py-3.5 rounded-full border-2 border-[#228573] text-[#228573] font-semibold text-base hover:bg-[#228573] hover:text-white hover:scale-[1.02] transition-all duration-200"
+                    >
                         View All Doctors
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

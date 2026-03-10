@@ -121,7 +121,9 @@ export default function Footer() {
                                 <Link
                                     key={label}
                                     href={href}
-                                    aria-label={label}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Visit ${label}`}
                                     className="w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-200 hover:scale-110 hover:opacity-90"
                                     style={{ backgroundColor: "#228573" }}
                                 >

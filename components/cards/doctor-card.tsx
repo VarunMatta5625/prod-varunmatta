@@ -1,3 +1,5 @@
+"use client";
+
 import { Star, Video, Hospital, CalendarCheck } from "lucide-react";
 import { Doctor } from "@/lib/data/doctors";
 
@@ -17,7 +19,13 @@ export default function DoctorCard({
     const hasHalf = rating - fullStars >= 0.5;
 
     return (
-        <div className="bg-white rounded-3xl overflow-hidden shadow-md border border-[#e8f5f2] card-hover transition-all duration-300 ease-out hover:scale-[1.07] hover:shadow-xl flex flex-col w-full max-w-[396px]">
+        <div
+            role="button"
+            tabIndex={0}
+            onClick={() => console.log("Doctor profile coming soon")}
+            onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") console.log("Doctor profile coming soon"); }}
+            aria-label={`View profile of ${name}`}
+            className="bg-white rounded-3xl overflow-hidden shadow-md border border-[#e8f5f2] card-hover transition-all duration-300 ease-out hover:scale-[1.03] hover:-translate-y-1.5 hover:shadow-xl flex flex-col w-full max-w-[396px] cursor-pointer">
             {/* Top card with avatar */}
             <div className="relative bg-gradient-to-br from-[#e8f5f2] to-[#c8ebe3] p-6 pb-16 min-h-[152px]">
                 {/* Rating */}
@@ -80,7 +88,7 @@ export default function DoctorCard({
                 </div>
 
                 {/* Book button */}
-                <button className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-full bg-[#228573] text-white font-semibold text-sm hover:bg-[#065b4b] transition-all duration-200 hover:shadow-md">
+                <button className="mt-auto w-full flex items-center justify-center gap-2 py-3 rounded-full bg-[#228573] text-white font-semibold text-sm hover:bg-[#065b4b] hover:scale-[1.02] transition-all duration-200 hover:shadow-md">
                     <CalendarCheck size={16} />
                     Book Appointment
                 </button>

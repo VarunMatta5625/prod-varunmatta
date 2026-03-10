@@ -12,17 +12,21 @@ import AnimationProvider from "@/components/animation-provider";
 export default function HomePage() {
   return (
     <AnimationProvider>
-      <main className="min-h-screen flex flex-col">
-        <Navbar />
-        <HeroSection />
-        <HowItWorksSection />
-        <MissionSection />
-        <VisionSection />
-        <TestimonialsSection />
-        <ExpertsSection />
-        <DoctorsCTASection />
+      <div className="min-h-screen flex flex-col">
+        <header>
+          <Navbar />
+        </header>
+        <main className="flex flex-col flex-1">
+          <HeroSection />
+          <HowItWorksSection />
+          <MissionSection />
+          <VisionSection />
+          <TestimonialsSection />
+          <ExpertsSection />
+          <DoctorsCTASection />
+        </main>
         <Footer />
-      </main>
+      </div>
     </AnimationProvider>
   );
 }

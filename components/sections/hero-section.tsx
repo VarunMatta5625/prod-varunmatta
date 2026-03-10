@@ -1,7 +1,7 @@
 "use client";
 // Figma illustration asset (node 9:2714)
 // Inline SVG — no external dependency, matches Figma design: patient + doctor consultation + medical items
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Upload, CalendarCheck } from "lucide-react";
 import Link from "next/link";
 import { useGSAP } from "@gsap/react";
@@ -131,6 +131,14 @@ export default function HeroSection() {
     const containerRef = useRef<HTMLElement>(null);
     const illustrationRef = useRef<HTMLDivElement>(null);
     const statRefs = useRef<(HTMLSpanElement | null)[]>([]);
+    const [ctaLoading, setCtaLoading] = useState(false);
+
+    function handleUploadCta() {
+        if (ctaLoading) return;
+        setCtaLoading(true);
+        document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => setCtaLoading(false), 500);
+    }
 
     useGSAP(() => {
         // Hero entrance — sequenced timeline with clearProps on button (fixes disappearing bug)
@@ -180,15 +188,17 @@ export default function HeroSection() {
                         Aushadham allows you to store your medical history and reports in your profile for no additional cost.
                     </p>
 
-                    <div className="flex flex-col gap-3 md:gap-6 mt-2 md:mt-0">
-                        <Link
-                            href="/upload"
-                            className="hero-btn group inline-flex items-center gap-3 px-8 py-4 text-white text-[17px] font-semibold rounded-full w-fit transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                    <div className="flex flex-col gap-3 md:gap-6 mt-6 md:mt-12">
+                        <button
+                            onClick={handleUploadCta}
+                            disabled={ctaLoading}
+                            aria-label="Upload your health reports"
+                            className="hero-btn group inline-flex items-center gap-3 px-8 py-4 text-white text-[17px] font-semibold rounded-full w-fit transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:scale-[1.02] disabled:opacity-75 disabled:cursor-not-allowed"
                             style={{ backgroundColor: "#065b4b" }}
                         >
                             <Upload size={19} />
                             Upload Your Reports Now
-                        </Link>
+                        </button>
 
                         <Link
                             href="/learn-more"

@@ -121,7 +121,7 @@ const visionCards = [
 // Reusable card renderer shared by desktop marquee and mobile swipe views
 function VisionCard({ card }: { card: typeof visionCards[number] }) {
     return (
-        <>
+        <div className="rounded-3xl overflow-hidden flex flex-col flex-1">
             {/* SVG Illustration */}
             <div className={`${card.height} p-4`} style={{ backgroundColor: "#f0faf7" }}>
                 {card.illustration}
@@ -139,7 +139,7 @@ function VisionCard({ card }: { card: typeof visionCards[number] }) {
                 <h3 className="font-bold text-[18px]" style={{ color: "#065b4b" }}>{card.title}</h3>
                 <p className="text-[14px] leading-relaxed" style={{ color: "rgba(6,91,75,0.65)" }}>{card.description}</p>
             </div>
-        </>
+        </div>
     );
 }
 
@@ -243,7 +243,7 @@ export default function VisionSection() {
                             key={i}
                             onMouseEnter={(e) => gsap.to(e.currentTarget, { scale: 1.08, duration: 0.3, ease: "power2.out" })}
                             onMouseLeave={(e) => gsap.to(e.currentTarget, { scale: 1, duration: 0.3, ease: "power2.out" })}
-                            className={`rounded-3xl overflow-hidden border shadow-sm flex flex-col w-[270px] md:w-[380px] flex-shrink-0 ${
+                        className={`rounded-3xl border shadow-sm flex flex-col w-[270px] md:w-[380px] flex-shrink-0 ${
                                 card.featured
                                     ? "shadow-lg ring-2 ring-[#3aa692] border-[#3aa692]"
                                     : "border-[#e8f5f2]"
